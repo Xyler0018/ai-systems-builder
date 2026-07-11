@@ -1,0 +1,11 @@
+node_modules
+.next
+.git
+*.log
+tsconfig.tsbuildinfo
+.env
+prisma/dev.db
+prisma/dev.db-journal
+data
+Dockerfile
+docker-compose.yml

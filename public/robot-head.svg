@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title desc">
+  <title id="title">AI Systems Builder robot head logo</title>
+  <desc id="desc">A compact robotic head mark with circuit details.</desc>
+  <rect width="64" height="64" rx="14" fill="#07111f"/>
+  <path d="M32 10v8" stroke="#22d3ee" stroke-width="4" stroke-linecap="round"/>
+  <circle cx="32" cy="8" r="3" fill="#22d3ee"/>
+  <rect x="15" y="18" width="34" height="30" rx="9" fill="#0f172a" stroke="#22d3ee" stroke-width="3"/>
+  <path d="M20 36h-5a4 4 0 0 1-4-4v-2a4 4 0 0 1 4-4h5M44 36h5a4 4 0 0 0 4-4v-2a4 4 0 0 0-4-4h-5" stroke="#67e8f9" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="25" cy="31" r="4" fill="#67e8f9"/>
+  <circle cx="39" cy="31" r="4" fill="#67e8f9"/>
+  <path d="M25 41h14" stroke="#a7f3d0" stroke-width="3" stroke-linecap="round"/>
+  <path d="M20 53h24" stroke="#22d3ee" stroke-width="3" stroke-linecap="round"/>
+  <path d="M25 48v5M39 48v5" stroke="#22d3ee" stroke-width="3" stroke-linecap="round"/>
+</svg>

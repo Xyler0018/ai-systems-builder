@@ -1,0 +1,357 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model UserSettings {
+  id                String   @id @default(cuid())
+  currentWeek       Int?
+  currentMonth      Int?
+  weeklyTargetHours Int      @default(12)
+  studyDaysPerWeek  Int      @default(5)
+  githubProfileUrl  String?
+  mainRepositoryUrl String?
+  ninetyDayLock     Boolean  @default(true)
+  sidebarCollapsed  Boolean  @default(false)
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+}
+
+model RoadmapPhase {
+  id                   String        @id @default(cuid())
+  phaseNumber          Int           @unique
+  name                 String
+  startMonth           Int?
+  endMonth             Int?
+  goal                 String
+  coreSkills           String
+  tools                String
+  requiredDeliverables String
+  successCondition     String
+  status               String        @default("Not Started")
+  progress             Int           @default(0)
+  priority             String        @default("Medium")
+  notes                String?
+  weeklyPlans          WeeklyPlan[]
+  projects             Project[]
+  skills               SkillPhase[]
+  resources            LearningResource[]
+  checkpoints          Checkpoint[]
+  createdAt            DateTime      @default(now())
+  updatedAt            DateTime      @updatedAt
+}
+
+model WeeklyPlan {
+  id               String       @id @default(cuid())
+  weekNumber       Int          @unique
+  month            Int
+  phaseId          String
+  phase            RoadmapPhase @relation(fields: [phaseId], references: [id], onDelete: Cascade)
+  focus            String
+  topicsToLearn    String
+  buildDeliverable String
+  repositoryFolder String
+  targetHours      Int          @default(0)
+  actualHours      Float        @default(0)
+  priority         String       @default("Medium")
+  status           String       @default("Not Started")
+  progress         Int          @default(0)
+  successCondition String
+  proofLinks       String?
+  blocker          String?
+  nextAction       String?
+  notes            String?
+  dailyLogs        DailyLog[]
+  projectTasks     ProjectTask[]
+  proofs           ProofOfWork[]
+  blockers         Blocker[]
+  projects         ProjectWeek[]
+  skills           SkillWeek[]
+  reviews          WeeklyReview[]
+  createdAt        DateTime     @default(now())
+  updatedAt        DateTime     @updatedAt
+}
+
+model DailyLog {
+  id                 String        @id @default(cuid())
+  date               DateTime?
+  weeklyPlanId       String?
+  weeklyPlan         WeeklyPlan?   @relation(fields: [weeklyPlanId], references: [id], onDelete: SetNull)
+  day                String?
+  todaysTarget       String?
+  conceptLearned     String?
+  buildOutput        String?
+  reviewMinutes      Int           @default(0)
+  learningMinutes    Int           @default(0)
+  buildingMinutes    Int           @default(0)
+  debuggingMinutes   Int           @default(0)
+  totalMinutes       Int           @default(0)
+  githubCommitDone   Boolean       @default(false)
+  commitUrl          String?
+  proofType          String?
+  proofUrl           String?
+  blocker            String?
+  blockerSeverity    String?
+  status             String        @default("Planned")
+  dailyScore         Int?
+  buildRatio         Float         @default(0)
+  dailyProofStatus   String        @default("Missing")
+  notes              String?
+  proofs             ProofOfWork[]
+  blockers           Blocker[]
+  createdAt          DateTime      @default(now())
+  updatedAt          DateTime      @updatedAt
+}
+
+model Project {
+  id                           String        @id @default(cuid())
+  name                         String
+  category                     String
+  targetMonth                  Int?
+  phaseId                      String?
+  phase                        RoadmapPhase? @relation(fields: [phaseId], references: [id], onDelete: SetNull)
+  problemSolved                String?
+  targetUser                   String?
+  description                  String
+  technicalStack               String
+  architecture                 String?
+  repositoryFolder             String?
+  githubUrl                    String?
+  demoUrl                      String?
+  screenshot                   String?
+  status                       String        @default("Planned")
+  progress                     Int           @default(0)
+  priority                     String        @default("Medium")
+  targetCompletionDate         DateTime?
+  actualCompletionDate         DateTime?
+  nextAction                   String?
+  blocker                      String?
+  estimatedHours               Float         @default(0)
+  actualHours                  Float         @default(0)
+  readmeCompleted              Boolean       @default(false)
+  testsCompleted               Boolean       @default(false)
+  loggingCompleted             Boolean       @default(false)
+  dockerCompleted              Boolean       @default(false)
+  architectureDiagramCompleted Boolean       @default(false)
+  demoCompleted                Boolean       @default(false)
+  limitationsDocumented        Boolean       @default(false)
+  evaluationCompleted          Boolean       @default(false)
+  deploymentCompleted          Boolean       @default(false)
+  portfolioReady               Boolean       @default(false)
+  notes                        String?
+  tasks                        ProjectTask[]
+  proofs                       ProofOfWork[]
+  blockers                     Blocker[]
+  weeks                        ProjectWeek[]
+  skills                       SkillProject[]
+  createdAt                    DateTime      @default(now())
+  updatedAt                    DateTime      @updatedAt
+}
+
+model ProjectTask {
+  id            String      @id @default(cuid())
+  task          String
+  projectId     String?
+  project       Project?    @relation(fields: [projectId], references: [id], onDelete: SetNull)
+  weeklyPlanId  String?
+  weeklyPlan    WeeklyPlan? @relation(fields: [weeklyPlanId], references: [id], onDelete: SetNull)
+  type          String      @default("Build")
+  priority      String      @default("Medium")
+  status        String      @default("Not Started")
+  dueDate       DateTime?
+  estimatedHours Float      @default(0)
+  actualHours   Float       @default(0)
+  proofLink     String?
+  blocker       String?
+  notes         String?
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+}
+
+model Skill {
+  id                 String         @id @default(cuid())
+  name               String         @unique
+  category           String
+  requiredDepth      String         @default("Working Knowledge")
+  status             String         @default("Not Started")
+  confidencePercent  Int            @default(0)
+  hoursInvested      Float          @default(0)
+  proofRequired      String?
+  proofUrl           String?
+  lastPracticedDate  DateTime?
+  nextPracticeAction String?
+  notes              String?
+  weeks              SkillWeek[]
+  projects           SkillProject[]
+  phases             SkillPhase[]
+  createdAt          DateTime       @default(now())
+  updatedAt          DateTime       @updatedAt
+}
+
+model Checkpoint {
+  id                  String        @id @default(cuid())
+  month               Int
+  title               String
+  phaseId             String?
+  phase               RoadmapPhase? @relation(fields: [phaseId], references: [id], onDelete: SetNull)
+  requiredProof       String
+  status              String        @default("Not Started")
+  reviewDate          DateTime?
+  score               Int?
+  gateResult          String?
+  missingRequirements String?
+  decision            String?
+  notes               String?
+  createdAt           DateTime      @default(now())
+  updatedAt           DateTime      @updatedAt
+}
+
+model EnvironmentTool {
+  id                  String   @id @default(cuid())
+  category            String
+  toolName            String
+  purpose             String
+  requirementLevel    String   @default("Required")
+  status              String   @default("Not Installed")
+  installedVersion    String?
+  installationLocation String?
+  url                 String?
+  configurationPath   String?
+  verificationCommand String?
+  expectedOutput      String?
+  verificationStatus  String   @default("Not Verified")
+  lastCheckedDate     DateTime?
+  issue               String?
+  fixNotes            String?
+  documentationUrl    String?
+  notes               String?
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+}
+
+model WeeklyReview {
+  id                String      @id @default(cuid())
+  weeklyPlanId      String?
+  weeklyPlan        WeeklyPlan? @relation(fields: [weeklyPlanId], references: [id], onDelete: SetNull)
+  reviewDate        DateTime?
+  whatILearned      String?
+  whatIBuilt        String?
+  whatWorked        String?
+  whatFailed        String?
+  whatIFixed        String?
+  githubLinks       String?
+  screenshots       String?
+  demoLinks         String?
+  blockers          String?
+  timeInvested      Float       @default(0)
+  weeklyScore       Int?
+  reasonForScore    String?
+  nextWeekFocus     String?
+  oneMainCorrection String?
+  notes             String?
+  createdAt         DateTime    @default(now())
+  updatedAt         DateTime    @updatedAt
+}
+
+model LearningResource {
+  id            String        @id @default(cuid())
+  title         String
+  topic         String
+  source        String
+  type          String
+  url           String?
+  phaseId       String?
+  phase         RoadmapPhase? @relation(fields: [phaseId], references: [id], onDelete: SetNull)
+  relatedWeek   Int?
+  status        String        @default("Queued")
+  priority      String        @default("Medium")
+  notes         String?
+  completedDate DateTime?
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+}
+
+model ProofOfWork {
+  id           String      @id @default(cuid())
+  title        String
+  type         String
+  url          String?
+  summary      String?
+  dailyLogId   String?
+  dailyLog     DailyLog?   @relation(fields: [dailyLogId], references: [id], onDelete: SetNull)
+  projectId    String?
+  project      Project?    @relation(fields: [projectId], references: [id], onDelete: SetNull)
+  weeklyPlanId String?
+  weeklyPlan   WeeklyPlan? @relation(fields: [weeklyPlanId], references: [id], onDelete: SetNull)
+  createdAt    DateTime    @default(now())
+  updatedAt    DateTime    @updatedAt
+}
+
+model Rule {
+  id          String   @id @default(cuid())
+  order       Int      @unique
+  text        String
+  category    String   @default("Execution")
+  isFollowed  Boolean  @default(false)
+  evidence    String?
+  notes       String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Blocker {
+  id           String      @id @default(cuid())
+  title        String
+  severity     String      @default("Medium")
+  status       String      @default("Open")
+  nextAction   String?
+  notes        String?
+  dailyLogId   String?
+  dailyLog     DailyLog?   @relation(fields: [dailyLogId], references: [id], onDelete: SetNull)
+  projectId    String?
+  project      Project?    @relation(fields: [projectId], references: [id], onDelete: SetNull)
+  weeklyPlanId String?
+  weeklyPlan   WeeklyPlan? @relation(fields: [weeklyPlanId], references: [id], onDelete: SetNull)
+  createdAt    DateTime    @default(now())
+  updatedAt    DateTime    @updatedAt
+}
+
+model ProjectWeek {
+  projectId    String
+  weeklyPlanId String
+  project      Project    @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  weeklyPlan   WeeklyPlan @relation(fields: [weeklyPlanId], references: [id], onDelete: Cascade)
+
+  @@id([projectId, weeklyPlanId])
+}
+
+model SkillWeek {
+  skillId      String
+  weeklyPlanId String
+  skill        Skill      @relation(fields: [skillId], references: [id], onDelete: Cascade)
+  weeklyPlan   WeeklyPlan @relation(fields: [weeklyPlanId], references: [id], onDelete: Cascade)
+
+  @@id([skillId, weeklyPlanId])
+}
+
+model SkillProject {
+  skillId   String
+  projectId String
+  skill     Skill   @relation(fields: [skillId], references: [id], onDelete: Cascade)
+  project   Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  @@id([skillId, projectId])
+}
+
+model SkillPhase {
+  skillId String
+  phaseId String
+  skill   Skill        @relation(fields: [skillId], references: [id], onDelete: Cascade)
+  phase   RoadmapPhase @relation(fields: [phaseId], references: [id], onDelete: Cascade)
+
+  @@id([skillId, phaseId])
+}
