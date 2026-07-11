@@ -12,8 +12,13 @@ export const metadata: Metadata = {
   applicationName: "AI Systems Builder",
   manifest: "/manifest.webmanifest",
   icons: {
-    icon: [{ url: "/robot-head.svg", type: "image/svg+xml", sizes: "any" }],
-    shortcut: [{ url: "/robot-head.svg", type: "image/svg+xml", sizes: "any" }]
+    icon: [
+      { url: "/icon-192.png", type: "image/png", sizes: "192x192" },
+      { url: "/icon-512.png", type: "image/png", sizes: "512x512" },
+      { url: "/robot-head.svg", type: "image/svg+xml", sizes: "any" }
+    ],
+    shortcut: [{ url: "/icon-192.png", type: "image/png", sizes: "192x192" }],
+    apple: [{ url: "/apple-touch-icon.png", type: "image/png", sizes: "180x180" }]
   }
 };
 
