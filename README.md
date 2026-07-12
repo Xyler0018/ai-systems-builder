@@ -4,10 +4,23 @@ Course plan and local-first dashboard for a 12-month AI Systems Builder roadmap.
 
 AI Systems Builder is a complete learning system for becoming a practical AI Engineer / AI Generalist with specialization in RAG and AI automation systems. The repository includes the full course roadmap plus a local dashboard for tracking execution, weekly progress, projects, resources, skills, and review habits.
 
+## Android App
+
+The Android app is available as a directly installable APK:
+
+[Download AI Systems Builder Android APK](https://github.com/Xyler0018/ai-systems-builder/raw/main/android/releases/AI-Systems-Builder.apk)
+
+The Android app is native and offline-first. It stores your learning data locally on your phone using Room SQLite and does not require Docker, a server, login, or a cloud database.
+
+After downloading the APK on Android, open it and allow installation from your browser or file manager if Android asks. This is normal for APKs installed outside the Play Store.
+
+Checksum file: [AI-Systems-Builder.apk.sha256](android/releases/AI-Systems-Builder.apk.sha256)
+
 ## What Is Included
 
 - **Course roadmap:** the full 12-month AI Systems Builder plan in [course/AI_Systems_Builder_Roadmap.md](course/AI_Systems_Builder_Roadmap.md).
 - **Local-first dashboard:** a Next.js app for tracking roadmap progress, daily logs, weekly execution, projects, resources, tools, skills, checkpoints, and settings.
+- **Android APK:** a native offline mobile dashboard at [android/releases/AI-Systems-Builder.apk](android/releases/AI-Systems-Builder.apk).
 - **Docker setup:** a local production-style container with SQLite persistence.
 - **Security notes:** local-first hardening docs under [docs/security](docs/security).
 - **App identity:** robotic-head logo and installable web app manifest.

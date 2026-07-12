@@ -4,3 +4,5 @@ local.properties
 captures/
 *.apk
 *.aab
+!releases/
+!releases/AI-Systems-Builder.apk

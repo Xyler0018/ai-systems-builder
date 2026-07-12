@@ -1,0 +1,1464 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "01c193839d44dec2284043953c25bce9",
+    "entities": [
+      {
+        "tableName": "settings",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `currentWeek` INTEGER, `currentMonth` INTEGER, `weeklyTargetHours` INTEGER NOT NULL, `studyDaysPerWeek` INTEGER NOT NULL, `githubProfileUrl` TEXT, `mainRepositoryUrl` TEXT, `ninetyDayLock` INTEGER NOT NULL, `createdAt` TEXT NOT NULL, `updatedAt` TEXT NOT NULL, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "currentWeek",
+            "columnName": "currentWeek",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "currentMonth",
+            "columnName": "currentMonth",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "weeklyTargetHours",
+            "columnName": "weeklyTargetHours",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "studyDaysPerWeek",
+            "columnName": "studyDaysPerWeek",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "githubProfileUrl",
+            "columnName": "githubProfileUrl",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mainRepositoryUrl",
+            "columnName": "mainRepositoryUrl",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "ninetyDayLock",
+            "columnName": "ninetyDayLock",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "createdAt",
+            "columnName": "createdAt",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "updatedAt",
+            "columnName": "updatedAt",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "roadmap_phases",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `phaseNumber` INTEGER NOT NULL, `name` TEXT NOT NULL, `startMonth` INTEGER, `endMonth` INTEGER, `goal` TEXT NOT NULL, `coreSkills` TEXT NOT NULL, `tools` TEXT NOT NULL, `requiredDeliverables` TEXT NOT NULL, `successCondition` TEXT NOT NULL, `status` TEXT NOT NULL, `progress` INTEGER NOT NULL, `priority` TEXT NOT NULL, `notes` TEXT, `createdAt` TEXT NOT NULL, `updatedAt` TEXT NOT NULL, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "phaseNumber",
+            "columnName": "phaseNumber",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "startMonth",
+            "columnName": "startMonth",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "endMonth",
+            "columnName": "endMonth",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "goal",
+            "columnName": "goal",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "coreSkills",
+            "columnName": "coreSkills",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "tools",
+            "columnName": "tools",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "requiredDeliverables",
+            "columnName": "requiredDeliverables",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "successCondition",
+            "columnName": "successCondition",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "status",
+            "columnName": "status",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "progress",
+            "columnName": "progress",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "priority",
+            "columnName": "priority",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "notes",
+            "columnName": "notes",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "createdAt",
+            "columnName": "createdAt",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "updatedAt",
+            "columnName": "updatedAt",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "weekly_plans",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `weekNumber` INTEGER NOT NULL, `month` INTEGER NOT NULL, `phaseId` TEXT NOT NULL, `focus` TEXT NOT NULL, `topicsToLearn` TEXT NOT NULL, `buildDeliverable` TEXT NOT NULL, `repositoryFolder` TEXT NOT NULL, `targetHours` INTEGER NOT NULL, `actualHours` REAL NOT NULL, `priority` TEXT NOT NULL, `status` TEXT NOT NULL, `progress` INTEGER NOT NULL, `successCondition` TEXT NOT NULL, `proofLinks` TEXT, `blocker` TEXT, `nextAction` TEXT, `notes` TEXT, `createdAt` TEXT NOT NULL, `updatedAt` TEXT NOT NULL, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "weekNumber",
+            "columnName": "weekNumber",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "month",
+            "columnName": "month",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "phaseId",
+            "columnName": "phaseId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "focus",
+            "columnName": "focus",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "topicsToLearn",
+            "columnName": "topicsToLearn",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "buildDeliverable",
+            "columnName": "buildDeliverable",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "repositoryFolder",
+            "columnName": "repositoryFolder",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "targetHours",
+            "columnName": "targetHours",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "actualHours",
+            "columnName": "actualHours",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "priority",
+            "columnName": "priority",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "status",
+            "columnName": "status",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "progress",
+            "columnName": "progress",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "successCondition",
+            "columnName": "successCondition",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "proofLinks",
+            "columnName": "proofLinks",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "blocker",
+            "columnName": "blocker",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "nextAction",
+            "columnName": "nextAction",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "notes",
+            "columnName": "notes",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "createdAt",
+            "columnName": "createdAt",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "updatedAt",
+            "columnName": "updatedAt",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "daily_logs",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `date` TEXT NOT NULL, `weeklyPlanId` TEXT, `day` TEXT, `todaysTarget` TEXT, `conceptLearned` TEXT, `buildOutput` TEXT, `reviewMinutes` INTEGER NOT NULL, `learningMinutes` INTEGER NOT NULL, `buildingMinutes` INTEGER NOT NULL, `debuggingMinutes` INTEGER NOT NULL, `totalMinutes` INTEGER NOT NULL, `githubCommitDone` INTEGER NOT NULL, `commitUrl` TEXT, `proofType` TEXT, `proofUrl` TEXT, `blocker` TEXT, `blockerSeverity` TEXT, `status` TEXT NOT NULL, `dailyScore` INTEGER, `buildRatio` REAL NOT NULL, `dailyProofStatus` TEXT NOT NULL, `notes` TEXT, `createdAt` TEXT NOT NULL, `updatedAt` TEXT NOT NULL, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "date",
+            "columnName": "date",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "weeklyPlanId",
+            "columnName": "weeklyPlanId",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "day",
+            "columnName": "day",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "todaysTarget",
+            "columnName": "todaysTarget",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "conceptLearned",
+            "columnName": "conceptLearned",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "buildOutput",
+            "columnName": "buildOutput",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "reviewMinutes",
+            "columnName": "reviewMinutes",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "learningMinutes",
+            "columnName": "learningMinutes",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "buildingMinutes",
+            "columnName": "buildingMinutes",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "debuggingMinutes",
+            "columnName": "debuggingMinutes",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "totalMinutes",
+            "columnName": "totalMinutes",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "githubCommitDone",
+            "columnName": "githubCommitDone",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "commitUrl",
+            "columnName": "commitUrl",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "proofType",
+            "columnName": "proofType",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "proofUrl",
+            "columnName": "proofUrl",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "blocker",
+            "columnName": "blocker",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "blockerSeverity",
+            "columnName": "blockerSeverity",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "status",
+            "columnName": "status",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "dailyScore",
+            "columnName": "dailyScore",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "buildRatio",
+            "columnName": "buildRatio",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "dailyProofStatus",
+            "columnName": "dailyProofStatus",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "notes",
+            "columnName": "notes",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "createdAt",
+            "columnName": "createdAt",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "updatedAt",
+            "columnName": "updatedAt",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "projects",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `name` TEXT NOT NULL, `category` TEXT NOT NULL, `targetMonth` INTEGER, `phaseId` TEXT, `problemSolved` TEXT, `targetUser` TEXT, `description` TEXT NOT NULL, `technicalStack` TEXT NOT NULL, `architecture` TEXT, `repositoryFolder` TEXT, `githubUrl` TEXT, `demoUrl` TEXT, `status` TEXT NOT NULL, `progress` INTEGER NOT NULL, `priority` TEXT NOT NULL, `nextAction` TEXT, `blocker` TEXT, `estimatedHours` REAL NOT NULL, `actualHours` REAL NOT NULL, `portfolioReady` INTEGER NOT NULL, `notes` TEXT, `createdAt` TEXT NOT NULL, `updatedAt` TEXT NOT NULL, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "category",
+            "columnName": "category",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "targetMonth",
+            "columnName": "targetMonth",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "phaseId",
+            "columnName": "phaseId",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "problemSolved",
+            "columnName": "problemSolved",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "targetUser",
+            "columnName": "targetUser",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "description",
+            "columnName": "description",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "technicalStack",
+            "columnName": "technicalStack",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "architecture",
+            "columnName": "architecture",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "repositoryFolder",
+            "columnName": "repositoryFolder",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "githubUrl",
+            "columnName": "githubUrl",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "demoUrl",
+            "columnName": "demoUrl",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "status",
+            "columnName": "status",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "progress",
+            "columnName": "progress",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "priority",
+            "columnName": "priority",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "nextAction",
+            "columnName": "nextAction",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "blocker",
+            "columnName": "blocker",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "estimatedHours",
+            "columnName": "estimatedHours",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "actualHours",
+            "columnName": "actualHours",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "portfolioReady",
+            "columnName": "portfolioReady",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "notes",
+            "columnName": "notes",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "createdAt",
+            "columnName": "createdAt",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "updatedAt",
+            "columnName": "updatedAt",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "project_tasks",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `task` TEXT NOT NULL, `projectId` TEXT, `weeklyPlanId` TEXT, `type` TEXT NOT NULL, `priority` TEXT NOT NULL, `status` TEXT NOT NULL, `dueDate` TEXT, `estimatedHours` REAL NOT NULL, `actualHours` REAL NOT NULL, `proofLink` TEXT, `blocker` TEXT, `notes` TEXT, `createdAt` TEXT NOT NULL, `updatedAt` TEXT NOT NULL, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "task",
+            "columnName": "task",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "projectId",
+            "columnName": "projectId",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "weeklyPlanId",
+            "columnName": "weeklyPlanId",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "type",
+            "columnName": "type",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "priority",
+            "columnName": "priority",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "status",
+            "columnName": "status",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "dueDate",
+            "columnName": "dueDate",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "estimatedHours",
+            "columnName": "estimatedHours",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "actualHours",
+            "columnName": "actualHours",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "proofLink",
+            "columnName": "proofLink",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "blocker",
+            "columnName": "blocker",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "notes",
+            "columnName": "notes",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "createdAt",
+            "columnName": "createdAt",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "updatedAt",
+            "columnName": "updatedAt",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "skills",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `name` TEXT NOT NULL, `category` TEXT NOT NULL, `requiredDepth` TEXT NOT NULL, `status` TEXT NOT NULL, `confidencePercent` INTEGER NOT NULL, `hoursInvested` REAL NOT NULL, `proofRequired` TEXT, `proofUrl` TEXT, `lastPracticedDate` TEXT, `nextPracticeAction` TEXT, `notes` TEXT, `createdAt` TEXT NOT NULL, `updatedAt` TEXT NOT NULL, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "category",
+            "columnName": "category",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "requiredDepth",
+            "columnName": "requiredDepth",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "status",
+            "columnName": "status",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "confidencePercent",
+            "columnName": "confidencePercent",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "hoursInvested",
+            "columnName": "hoursInvested",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "proofRequired",
+            "columnName": "proofRequired",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "proofUrl",
+            "columnName": "proofUrl",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "lastPracticedDate",
+            "columnName": "lastPracticedDate",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "nextPracticeAction",
+            "columnName": "nextPracticeAction",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "notes",
+            "columnName": "notes",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "createdAt",
+            "columnName": "createdAt",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "updatedAt",
+            "columnName": "updatedAt",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "learning_resources",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `title` TEXT NOT NULL, `topic` TEXT NOT NULL, `source` TEXT NOT NULL, `type` TEXT NOT NULL, `url` TEXT, `phaseId` TEXT, `relatedWeek` INTEGER, `status` TEXT NOT NULL, `priority` TEXT NOT NULL, `notes` TEXT, `completedDate` TEXT, `createdAt` TEXT NOT NULL, `updatedAt` TEXT NOT NULL, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "title",
+            "columnName": "title",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "topic",
+            "columnName": "topic",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "source",
+            "columnName": "source",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "type",
+            "columnName": "type",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "url",
+            "columnName": "url",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "phaseId",
+            "columnName": "phaseId",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "relatedWeek",
+            "columnName": "relatedWeek",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "status",
+            "columnName": "status",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "priority",
+            "columnName": "priority",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "notes",
+            "columnName": "notes",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "completedDate",
+            "columnName": "completedDate",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "createdAt",
+            "columnName": "createdAt",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "updatedAt",
+            "columnName": "updatedAt",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "environment_tools",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `category` TEXT NOT NULL, `toolName` TEXT NOT NULL, `purpose` TEXT NOT NULL, `requirementLevel` TEXT NOT NULL, `status` TEXT NOT NULL, `installedVersion` TEXT, `installationLocation` TEXT, `url` TEXT, `verificationCommand` TEXT, `expectedOutput` TEXT, `verificationStatus` TEXT NOT NULL, `notes` TEXT, `createdAt` TEXT NOT NULL, `updatedAt` TEXT NOT NULL, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "category",
+            "columnName": "category",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "toolName",
+            "columnName": "toolName",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "purpose",
+            "columnName": "purpose",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "requirementLevel",
+            "columnName": "requirementLevel",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "status",
+            "columnName": "status",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "installedVersion",
+            "columnName": "installedVersion",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "installationLocation",
+            "columnName": "installationLocation",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "url",
+            "columnName": "url",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "verificationCommand",
+            "columnName": "verificationCommand",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "expectedOutput",
+            "columnName": "expectedOutput",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "verificationStatus",
+            "columnName": "verificationStatus",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "notes",
+            "columnName": "notes",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "createdAt",
+            "columnName": "createdAt",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "updatedAt",
+            "columnName": "updatedAt",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "rules",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `order` INTEGER NOT NULL, `text` TEXT NOT NULL, `category` TEXT NOT NULL, `isFollowed` INTEGER NOT NULL, `evidence` TEXT, `notes` TEXT, `createdAt` TEXT NOT NULL, `updatedAt` TEXT NOT NULL, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "order",
+            "columnName": "order",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "text",
+            "columnName": "text",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "category",
+            "columnName": "category",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isFollowed",
+            "columnName": "isFollowed",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "evidence",
+            "columnName": "evidence",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "notes",
+            "columnName": "notes",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "createdAt",
+            "columnName": "createdAt",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "updatedAt",
+            "columnName": "updatedAt",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "checkpoints",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `month` INTEGER NOT NULL, `title` TEXT NOT NULL, `phaseId` TEXT, `requiredProof` TEXT NOT NULL, `status` TEXT NOT NULL, `reviewDate` TEXT, `score` INTEGER, `gateResult` TEXT, `missingRequirements` TEXT, `decision` TEXT, `notes` TEXT, `createdAt` TEXT NOT NULL, `updatedAt` TEXT NOT NULL, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "month",
+            "columnName": "month",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "title",
+            "columnName": "title",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "phaseId",
+            "columnName": "phaseId",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "requiredProof",
+            "columnName": "requiredProof",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "status",
+            "columnName": "status",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "reviewDate",
+            "columnName": "reviewDate",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "score",
+            "columnName": "score",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "gateResult",
+            "columnName": "gateResult",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "missingRequirements",
+            "columnName": "missingRequirements",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "decision",
+            "columnName": "decision",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "notes",
+            "columnName": "notes",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "createdAt",
+            "columnName": "createdAt",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "updatedAt",
+            "columnName": "updatedAt",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "weekly_reviews",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `weeklyPlanId` TEXT, `reviewDate` TEXT, `whatILearned` TEXT, `whatIBuilt` TEXT, `blockers` TEXT, `timeInvested` REAL NOT NULL, `weeklyScore` INTEGER, `nextWeekFocus` TEXT, `notes` TEXT, `createdAt` TEXT NOT NULL, `updatedAt` TEXT NOT NULL, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "weeklyPlanId",
+            "columnName": "weeklyPlanId",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "reviewDate",
+            "columnName": "reviewDate",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "whatILearned",
+            "columnName": "whatILearned",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "whatIBuilt",
+            "columnName": "whatIBuilt",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "blockers",
+            "columnName": "blockers",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "timeInvested",
+            "columnName": "timeInvested",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "weeklyScore",
+            "columnName": "weeklyScore",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "nextWeekFocus",
+            "columnName": "nextWeekFocus",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "notes",
+            "columnName": "notes",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "createdAt",
+            "columnName": "createdAt",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "updatedAt",
+            "columnName": "updatedAt",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "proofs",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `title` TEXT NOT NULL, `type` TEXT NOT NULL, `url` TEXT, `summary` TEXT, `dailyLogId` TEXT, `projectId` TEXT, `weeklyPlanId` TEXT, `createdAt` TEXT NOT NULL, `updatedAt` TEXT NOT NULL, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "title",
+            "columnName": "title",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "type",
+            "columnName": "type",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "url",
+            "columnName": "url",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "summary",
+            "columnName": "summary",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "dailyLogId",
+            "columnName": "dailyLogId",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "projectId",
+            "columnName": "projectId",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "weeklyPlanId",
+            "columnName": "weeklyPlanId",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "createdAt",
+            "columnName": "createdAt",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "updatedAt",
+            "columnName": "updatedAt",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "blockers",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `title` TEXT NOT NULL, `severity` TEXT NOT NULL, `status` TEXT NOT NULL, `nextAction` TEXT, `notes` TEXT, `dailyLogId` TEXT, `projectId` TEXT, `weeklyPlanId` TEXT, `createdAt` TEXT NOT NULL, `updatedAt` TEXT NOT NULL, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "title",
+            "columnName": "title",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "severity",
+            "columnName": "severity",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "status",
+            "columnName": "status",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "nextAction",
+            "columnName": "nextAction",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "notes",
+            "columnName": "notes",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "dailyLogId",
+            "columnName": "dailyLogId",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "projectId",
+            "columnName": "projectId",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "weeklyPlanId",
+            "columnName": "weeklyPlanId",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "createdAt",
+            "columnName": "createdAt",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "updatedAt",
+            "columnName": "updatedAt",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      }
+    ],
+    "views": [],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '01c193839d44dec2284043953c25bce9')"
+    ]
+  }
+}
