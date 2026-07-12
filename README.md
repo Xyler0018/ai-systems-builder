@@ -124,6 +124,20 @@ Use Chrome's install option from the address bar or browser menu. The included w
 
 If Chrome previously installed the app with a fallback letter icon, uninstall the old Chrome app and install it again after rebuilding.
 
+## Android Offline App
+
+This repository also includes a native Android app in [android/](android/). It is a local-first mobile version of the dashboard built with Kotlin, Jetpack Compose, Material 3, Room SQLite, AndroidX Navigation, and Kotlin serialization.
+
+The Android app:
+
+- works offline after install
+- stores data locally on the phone in Room SQLite
+- does not require Docker, the desktop dashboard, a server, login, or cloud database
+- includes the AI Systems Builder roadmap seed data
+- supports manual JSON backup export/import for moving data between devices
+
+Open the `android/` folder in Android Studio and run the `app` configuration on an emulator or Android device.
+
 ## Local Development Without Docker
 
 Install dependencies:
